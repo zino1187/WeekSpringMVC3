@@ -1,8 +1,9 @@
+<%@page import="notice.model.Notice"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List list=(List)request.getAttribute("list");//list라는 이름으로 담긴 객체를 꺼낸다!
+	List<Notice> list=(List)request.getAttribute("list");//list라는 이름으로 담긴 객체를 꺼낸다!
 %>    
 <!DOCTYPE html>
 <html>
@@ -50,12 +51,13 @@ function registForm(){
     <th>조회수</th>
   </tr>
   <%for(int i=0;i<list.size();i++){%>
+  <%Notice notice=list.get(i); %>
   <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-    <td>50</td>
-    <td>50</td>
+    <td><%=notice.getNotice_id() %></td>
+    <td><%=notice.getTitle() %></td>
+    <td><%=notice.getWriter() %></td>
+    <td><%=notice.getRegdate() %></td>
+    <td><%=notice.getHit() %></td>
   </tr>
   <%} %>
   <tr>
