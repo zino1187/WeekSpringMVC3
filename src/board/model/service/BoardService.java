@@ -12,6 +12,7 @@ import notice.model.Notice;
 public interface BoardService {
 	public void insert(Notice notice);
 	public List selectAll();
+	public Notice select(int notice_id);
 }
 
 

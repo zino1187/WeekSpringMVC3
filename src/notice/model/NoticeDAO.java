@@ -8,6 +8,7 @@ import java.util.List;
 public interface NoticeDAO {
 	public int insert(Notice notice);
 	public List selectAll();
+	public Notice select(int notice_id);
 }
 
 

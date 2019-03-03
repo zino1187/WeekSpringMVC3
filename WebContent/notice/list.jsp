@@ -54,7 +54,10 @@ function registForm(){
   <%Notice notice=list.get(i); %>
   <tr>
     <td><%=notice.getNotice_id() %></td>
-    <td><%=notice.getTitle() %></td>
+    <td>
+    	
+    	<a href="/notice/content?notice_id=<%=notice.getNotice_id() %>"><%=notice.getTitle() %></a>
+    </td>
     <td><%=notice.getWriter() %></td>
     <td><%=notice.getRegdate() %></td>
     <td><%=notice.getHit() %></td>

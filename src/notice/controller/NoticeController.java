@@ -5,6 +5,7 @@ package notice.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import board.model.service.BoardService;
@@ -47,6 +48,18 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list); //list라는 이름으로 list를 보관
 		mav.setViewName("notice/list");
+		return mav;
+	}
+	
+	//상세글 보기 요청을 처리 
+	@RequestMapping("/notice/content")
+	public ModelAndView select(@RequestParam("notice_id") int notice_id) {
+		System.out.println("넘겨받은 notice_id는 "+notice_id);
+		Notice notice=boardService.select(notice_id);
+		
+		ModelAndView mav = new ModelAndView("notice/content");
+		mav.addObject("notice", notice);//결과 담기!!!
+		System.out.println("제목은 "+notice.getTitle());
 		return mav;
 	}
 }

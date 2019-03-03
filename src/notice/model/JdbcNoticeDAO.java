@@ -107,7 +107,43 @@ public class JdbcNoticeDAO implements NoticeDAO{
 		}
 		return list;//리스트 반환
 	}
+	
+	public Notice select(int notice_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		con=pool.getConnection();
+		String sql="select * from notice where notice_id=?";
+		Notice notice=null;
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, notice_id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {//레코드가 있다면...
+				notice = new Notice();//Empty 된 객체하나 생성
+				notice.setNotice_id(rs.getInt("notice_id"));
+				notice.setWriter(rs.getString("writer"));
+				notice.setTitle(rs.getString("title"));
+				notice.setContent(rs.getString("content"));
+				notice.setRegdate(rs.getString("regdate"));
+				notice.setHit(rs.getInt("hit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt, rs);
+		}
+		return notice;
+	}
 }
+
+
+
+
+
 
 
 

@@ -27,6 +27,11 @@ public class BoardServiceImpl implements BoardService{
 		return list;
 	}
 	
+	public Notice select(int notice_id) {
+		Notice notice=null;
+		notice=noticeDAO.select(notice_id);
+		return notice;
+	}
 }
 
 
