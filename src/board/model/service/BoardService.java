@@ -4,10 +4,14 @@
  * Service 이고, Service컨트롤러가 아닌 모델이다!!
  * */
 package board.model.service;
+
+import java.util.List;
+
 import notice.model.Notice;
 
 public interface BoardService {
 	public void insert(Notice notice);
+	public List selectAll();
 }
 
 

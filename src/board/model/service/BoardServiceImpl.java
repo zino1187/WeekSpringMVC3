@@ -1,5 +1,7 @@
 package board.model.service;
 
+import java.util.List;
+
 import notice.model.Notice;
 import notice.model.NoticeDAO;
 
@@ -16,7 +18,18 @@ public class BoardServiceImpl implements BoardService{
 		noticeDAO.insert(notice); //DAO의 메서드 호출
 		System.out.println(TAG+" insert 호출");
 	}
+	
+	
+	public List selectAll() {
+		return null;
+	}
+	
 }
+
+
+
+
+
 
 
 

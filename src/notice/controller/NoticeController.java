@@ -32,7 +32,17 @@ public class NoticeController {
 		return "notice/list";
 	} 
 	
+	//목록을 처리하는 메서드
+	public void selectAll() {
+		
+	}
 }
+
+
+
+
+
+
 
 
 

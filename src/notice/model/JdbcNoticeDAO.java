@@ -2,7 +2,9 @@ package notice.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import db.PoolManager;
 
@@ -67,6 +69,39 @@ public class JdbcNoticeDAO implements NoticeDAO{
 		}
 		System.out.println(TAG+" insert 호출 ");
 		return result;//쿼리 수행 결과를 반환!! 1성공, 0실패
+	}
+	
+	//오라클에 있는 모든 게시물 가져오기!! 
+	public List selectAll() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		con=pool.getConnection();//풀로 부터 커넥션 얻기!!
+		String sql="select * from notice order by notice_id desc";
+		try {
+			pstmt=con.prepareStatement(sql);//쿼리 객체 생성!!
+			//ResultSet 은?? 레코드를 담은 객체 즉 표와 같다!!
+			rs=pstmt.executeQuery();//이 시점에 rs 생성됨!!
+			//rs는 곧 소멸되므로, rs에 존재하는 모든 레코드를 Notice 각각
+			//담고 다시 이 각각의 Notice를 컬렉션 프레임웍이 제공하는 객체중
+			//순서가 있는 객체인 List에 담겠다!!
+			while(rs.next()) {
+				Notice notice = new Notice();//Empty 된 객체하나 생성
+				notice.setNotice_id(rs.getInt("notice_id"));
+				notice.setWriter(rs.getString("writer"));
+				notice.setTitle(rs.getString("title"));
+				notice.setContent(rs.getString("content"));
+				notice.setRegdate(rs.getString("regdate"));
+				notice.setHit(rs.getInt("hit"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
 
