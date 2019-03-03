@@ -62,7 +62,22 @@ public class NoticeController {
 		System.out.println("제목은 "+notice.getTitle());
 		return mav;
 	}
+	
+	//글 수정 요청 처리 
+	@RequestMapping("/notice/edit")
+	public String edit(Notice notice) {
+		int notice_id=notice.getNotice_id();
+		
+		//수정이 완료된 이후엔 다시 상세보기를 보여준다...
+		//redirect: 의미?? 지정한 url로 다시 접속하게 함.. 
+		//jsp의 response.sendRedirect() 과 같은 것임!!
+		return "redirect:/notice/content?notice_id="+notice_id;
+	}
+	
 }
+
+
+
 
 
 

@@ -18,6 +18,7 @@
 				<prop key="/notice/insert">noticeController</prop>
 				<prop key="/notice/list">noticeController</prop>
 				<prop key="/notice/content">noticeController</prop>
+				<prop key="/notice/edit">noticeController</prop>
 			</props>
 		</property>	 	
 	 </bean>

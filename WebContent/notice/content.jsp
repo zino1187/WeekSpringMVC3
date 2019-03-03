@@ -54,7 +54,7 @@ hr {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 15%;
   opacity: 0.9;
 }
 
@@ -79,6 +79,12 @@ a {
 function init(){
 	CKEDITOR.replace("content");
 }
+
+function edit(){
+	form1.action="/notice/edit";	
+	form1.method="post";//데이터 양이 크기 때문
+	form1.submit();
+}
 </script>
 </head>
 <body onLoad="init()">
@@ -88,11 +94,14 @@ function init(){
     <hr>
     
 	<form name="form1">
+		<input type="hidden" value="<%=notice.getNotice_id()%>" name="notice_id"/>
 	    <input type="text" value="<%=notice.getWriter() %>" name="writer" required>
 	    <input type="text" value="<%=notice.getTitle() %>" name="title" required>
 	    <textarea id="content" name="content" style="width:100%"><%=notice.getContent() %></textarea>
     </form>
-    <button type="button" class="registerbtn" onClick="regist()">Register</button>
+    <button type="button" class="registerbtn" onClick="edit()">수정</button>
+    <button type="button" class="registerbtn" onClick="del()">삭제</button>
+    <button type="button" class="registerbtn" onClick="location.href='/notice/list'">목록</button>
     
   </div>
   

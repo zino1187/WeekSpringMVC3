@@ -138,6 +138,19 @@ public class JdbcNoticeDAO implements NoticeDAO{
 		}
 		return notice;
 	}
+	
+	//게시물 한건 수정하기 
+	public int update(Notice notice) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		String sql="update notice set writer=?,title=?,content=?";
+		sql+=" where notice_id=?";
+		
+				
+		return 0;
+	}
+
 }
 
 
