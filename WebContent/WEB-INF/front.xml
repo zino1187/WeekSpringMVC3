@@ -33,8 +33,10 @@
 	 <bean id="helloController" class="test.HelloController"></bean>
 	 	
 	<bean id="jdbcNoticeDAO" class="notice.model.JdbcNoticeDAO"></bean>
+	<bean id="mybatisNoticeDAO" class="notice.model.MybatisNoticeDAO"></bean>
+
 	<bean id="boardServiceImpl" class="board.model.service.BoardServiceImpl">
-		<property name="noticeDAO" ref="jdbcNoticeDAO"></property>	
+		<property name="noticeDAO" ref="mybatisNoticeDAO"></property>	
 	</bean>		 	
 	
 	<bean id="noticeController" class="notice.controller.NoticeController">
