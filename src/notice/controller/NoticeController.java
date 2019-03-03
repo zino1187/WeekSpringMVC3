@@ -84,6 +84,7 @@ public class NoticeController {
 	//臂 1扒 昏力 夸没 贸府 
 	@RequestMapping("/notice/delete")
 	public String delete(@RequestParam("notice_id") int notice_id) {
+		boardService.delete(notice_id);
 		//犁立加 
 		return "redirect:/notice/list";
 	}

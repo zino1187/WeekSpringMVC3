@@ -14,6 +14,7 @@ public interface BoardService {
 	public List selectAll();
 	public Notice select(int notice_id);
 	public int update(Notice notice);
+	public int delete(int notice_id);
 }
 
 

@@ -163,7 +163,29 @@ public class JdbcNoticeDAO implements NoticeDAO{
 		}
 		return result;//수행 결과 반환!!
 	}
+	
+	@Override
+	public int delete(int notice_id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		con=pool.getConnection();
+		
+		String sql="delete from notice where notice_id=?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, notice_id);
+			result=pstmt.executeUpdate();//쿼리문 수행!!!
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt);
+		}
+		return result;//수행 결과 반환!!
 
+	}
 }
 
 

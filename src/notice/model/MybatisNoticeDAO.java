@@ -38,8 +38,26 @@ public class MybatisNoticeDAO implements NoticeDAO{
 
 	@Override
 	public int update(Notice notice) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session=null;
+		session=manager.getSession();
+		int result=session.update("Notice.update", notice);
+		session.commit();//DML(insert ,update, delete)은 트랜잭션대상!
+		manager.release(session);
+		return result;
 	}
-
+	
+	public int delete(int notice_id) {
+		SqlSession session=null;
+		session=manager.getSession();
+		int result=session.delete("Notice.delete", notice_id);
+		session.commit();
+		manager.release(session);
+		return result;
+	}
 }
+
+
+
+
+
+

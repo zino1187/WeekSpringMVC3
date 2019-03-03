@@ -38,6 +38,12 @@ public class BoardServiceImpl implements BoardService{
 		result=noticeDAO.update(notice);
 		return result;
 	}
+	
+	public int delete(int notice_id) {
+		int result=0;
+		result=noticeDAO.delete(notice_id);
+		return result;
+	}
 }
 
 
