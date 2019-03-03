@@ -19,6 +19,7 @@
 				<prop key="/notice/list">noticeController</prop>
 				<prop key="/notice/content">noticeController</prop>
 				<prop key="/notice/edit">noticeController</prop>
+				<prop key="/notice/delete">noticeController</prop>
 			</props>
 		</property>	 	
 	 </bean>

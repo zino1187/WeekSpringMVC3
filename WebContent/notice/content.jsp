@@ -81,8 +81,19 @@ function init(){
 }
 
 function edit(){
+	if(!confirm("수정하시겠어요?")){
+		return;
+	}
 	form1.action="/notice/edit";	
 	form1.method="post";//데이터 양이 크기 때문
+	form1.submit();
+}
+function del(){
+	if(!confirm("삭제하시겠어요?")){
+		return;
+	}
+	form1.action="/notice/delete";
+	form1.method="post";
 	form1.submit();
 }
 </script>
