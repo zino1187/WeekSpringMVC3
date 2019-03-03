@@ -1,5 +1,10 @@
+<%@page import="notice.model.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	//컨트롤러가 보낸 Notice 꺼내기!!
+	Notice notice=(Notice)request.getAttribute("notice");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,32 +79,18 @@ a {
 function init(){
 	CKEDITOR.replace("content");
 }
-
-//오라클에 넣자?, 넣기를 요청하자?
-//클라이언트 스크립트 언어인 자바스크립트는 원본소스가 
-//사용자들의 pc로 다운받아져서 실행되므로 보안처리가 불가능하다
-//따라서 서버에 요청만 할 수 있다
-function regist(){
-	form1.method="post"; //내용이 많기 때문에 post방식으로
-	//보내야 한다...
-	form1.action="/notice/insert";
-	form1.submit();//전송!!
-}
 </script>
-
 </head>
 <body onLoad="init()">
-
-
   <div class="container">
     <h1>상세내용</h1>
     <p>작성한 내용을 확인할 수 있습니다</p>
     <hr>
     
 	<form name="form1">
-	    <input type="text" placeholder="작성자 입력" name="writer" required>
-	    <input type="text" placeholder="제목 입력" name="title" required>
-	    <textarea id="content" name="content" placeholder="내용 입력" style="width:100%"></textarea>
+	    <input type="text" value="<%=notice.getWriter() %>" name="writer" required>
+	    <input type="text" value="<%=notice.getTitle() %>" name="title" required>
+	    <textarea id="content" name="content" style="width:100%"><%=notice.getContent() %></textarea>
     </form>
     <button type="button" class="registerbtn" onClick="regist()">Register</button>
     
