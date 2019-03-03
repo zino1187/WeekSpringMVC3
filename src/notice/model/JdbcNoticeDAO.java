@@ -143,12 +143,25 @@ public class JdbcNoticeDAO implements NoticeDAO{
 	public int update(Notice notice) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		int result=0;
+		
+		con=pool.getConnection();
 		
 		String sql="update notice set writer=?,title=?,content=?";
 		sql+=" where notice_id=?";
-		
-				
-		return 0;
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, notice.getWriter());
+			pstmt.setString(2, notice.getTitle());
+			pstmt.setString(3, notice.getContent());
+			pstmt.setInt(4, notice.getNotice_id());
+			result=pstmt.executeUpdate();//쿼리문 수행!!!
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			pool.release(con, pstmt);
+		}
+		return result;//수행 결과 반환!!
 	}
 
 }

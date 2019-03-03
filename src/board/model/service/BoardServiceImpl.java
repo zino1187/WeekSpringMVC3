@@ -32,7 +32,17 @@ public class BoardServiceImpl implements BoardService{
 		notice=noticeDAO.select(notice_id);
 		return notice;
 	}
+	
+	public int update(Notice notice) {
+		int result=0;
+		result=noticeDAO.update(notice);
+		return result;
+	}
 }
+
+
+
+
 
 
 

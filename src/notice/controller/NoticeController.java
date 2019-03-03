@@ -68,6 +68,13 @@ public class NoticeController {
 	public String edit(Notice notice) {
 		int notice_id=notice.getNotice_id();
 		
+		int result=boardService.update(notice);//수정!!!
+		
+		if(result==0) {
+			System.out.println("수정 실패");
+		}else {
+			System.out.println("수정 성공");
+		}		
 		//수정이 완료된 이후엔 다시 상세보기를 보여준다...
 		//redirect: 의미?? 지정한 url로 다시 접속하게 함.. 
 		//jsp의 response.sendRedirect() 과 같은 것임!!
