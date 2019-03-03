@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.PoolManager;
@@ -76,6 +77,8 @@ public class JdbcNoticeDAO implements NoticeDAO{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
+		List list=new ArrayList();//Notice 들을 담게될 List
+		//ex) 게시물이 총 3개 Notice도 3개 생성되어 List안에 탑재!!
 		
 		con=pool.getConnection();//풀로 부터 커넥션 얻기!!
 		String sql="select * from notice order by notice_id desc";
@@ -94,14 +97,15 @@ public class JdbcNoticeDAO implements NoticeDAO{
 				notice.setContent(rs.getString("content"));
 				notice.setRegdate(rs.getString("regdate"));
 				notice.setHit(rs.getInt("hit"));
-				
+				list.add(notice);//리스트에 담기!!!
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			//반납!!
+			pool.release(con, pstmt, rs);
 		}
-		
-		return null;
+		return list;//리스트 반환
 	}
 }
 

@@ -16,6 +16,7 @@
 			<props>
 				<prop key="/hello">helloController</prop>
 				<prop key="/notice/insert">noticeController</prop>
+				<prop key="/notice/list">noticeController</prop>
 			</props>
 		</property>	 	
 	 </bean>

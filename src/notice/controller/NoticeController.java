@@ -2,7 +2,10 @@
 //공지사항과 관련된 요청: 글쓰기요청, 삭제요청, 리스트요청, 수정요청...
 package notice.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import board.model.service.BoardService;
 import notice.model.Notice;
@@ -29,12 +32,22 @@ public class NoticeController {
 		System.out.println(TAG+"넘겨받은 제목은 "+notice.getTitle());
 		System.out.println(TAG+"넘겨받은 내용은 "+notice.getContent());
 		boardService.insert(notice);
-		return "notice/list";
+		return "redirect:/notice/list";
 	} 
 	
 	//목록을 처리하는 메서드
-	public void selectAll() {
-		
+	@RequestMapping("/notice/list")
+	public ModelAndView selectAll() {
+		List list=null;
+		list=boardService.selectAll();
+		//list는 DispatcherServlet 대표 컨트롤러에게 전달되어야 한다..
+		//따라서 list를 보관할 객체가 필요한데 스프링에서는 Model 객체가 
+		//데이터를 보관하는 역할을 수행한다!!
+		//사실 jsp에서의 RequestDispatcher 의 포워딩 기능과 같다 
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list); //list라는 이름으로 list를 보관
+		mav.setViewName("notice/list");
+		return mav;
 	}
 }
 

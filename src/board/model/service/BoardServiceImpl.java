@@ -21,7 +21,10 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	public List selectAll() {
-		return null;
+		//dao 에게 일 시키기!!
+		List list=null;
+		list=noticeDAO.selectAll();
+		return list;
 	}
 	
 }

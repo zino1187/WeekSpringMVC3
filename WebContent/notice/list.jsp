@@ -1,5 +1,9 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List list=(List)request.getAttribute("list");//list라는 이름으로 담긴 객체를 꺼낸다!
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +49,7 @@ function registForm(){
     <th>작성일</th>
     <th>조회수</th>
   </tr>
-  <%for(int i=0;i<10;i++){%>
+  <%for(int i=0;i<list.size();i++){%>
   <tr>
     <td>Jill</td>
     <td>Smith</td>
